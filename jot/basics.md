@@ -26,3 +26,8 @@ List-initialization disallows narrowing conversions
 When a variable is initialized using an empty set of braces, a special form of list-initialization called value-initialization takes place  
 C++17 introduced the `[[maybe_unused]]` attribute, which allows us to tell the compiler that we’re okay with a variable being unused. The compiler will not generate unused variable warnings for such variables.  
 
+### iostream
+
+`std::cout` is buffered  
+Using std::endl is often inefficient, as it actually does two jobs: it outputs a newline (moving the cursor to the next line of the console), and it flushes the buffer (which is slow).  
+`std::cin` is buffered  
