@@ -31,3 +31,10 @@ C++17 introduced the `[[maybe_unused]]` attribute, which allows us to tell the c
 `std::cout` is buffered  
 Using std::endl is often inefficient, as it actually does two jobs: it outputs a newline (moving the cursor to the next line of the console), and it flushes the buffer (which is slow).  
 `std::cin` is buffered  
+
+### undefined behavior
+
+Using the value from an uninitialized variable is our first example of undefined behavior.
+In some cases, the C++ language standard allows the implementation to determine how some aspect of the language will behave, so that the compiler can choose a behavior that is efficient for a given platform. Behavior that is defined by the implementation is called implementation-defined behavior.
+Unspecified behavior is almost identical to implementation-defined behavior in that the behavior is left up to the implementation to define, but the implementation is not required to document the behavior.
+The identifier can not be a keyword. Keywords are reserved.
