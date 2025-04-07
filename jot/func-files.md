@@ -52,3 +52,30 @@ The #ifdef preprocessor directive allows the preprocessor to check whether an id
 #ifndef is the opposite of #ifdef, in that it allows you to check whether an identifier has NOT been #defined yet.  
 
 One more common use of conditional compilation involves using #if 0 to exclude a block of code from being compiled (as if it were inside a comment block)  
+
+### Header files
+
+Header files usually have a .h extension, but you will occasionally see them with a .hpp extension or no extension at all.  
+Conventionally, header files are used to propagate a bunch of related forward declarations into a code file.  
+
+int add(int x, int y); // function prototype for add.h -- don't forget the semicolon!  
+#include "add.h" // Insert contents of add.h at this point.  Note use of double quotes here.  
+
+When we use double-quotes, we’re telling the preprocessor that this is a header file that we wrote. The preprocessor will first search for the header file in the current directory. If it can’t find a matching header there, it will then search the include directories.  
+When we use angled brackets, we’re telling the preprocessor that this is a header file we didn’t write ourselves. The preprocessor will search for the header only in the directories specified by the include directories.  
+
+### Header Guards
+
+The good news is that we can avoid the above problem via a mechanism called a header guard (also called an include guard). Header guards are conditional compilation directives that take the following form:  
+#ifndef SOME_UNIQUE_NAME_HERE
+#define SOME_UNIQUE_NAME_HERE
+
+// your declarations (and certain types of definitions) here
+
+#endif  
+Some good suggestions are a naming convention of PROJECT_PATH_FILE_H, FILE_LARGE-RANDOM-NUMBER_H, or FILE_CREATION-DATE_H.  
+
+#pragma once serves the same purpose as header guards: to avoid a header file from being included multiple times. With traditional header guards, the developer is responsible for guarding the header (by using preprocessor directives #ifndef, #define, and #endif). With #pragma once, we’re requesting that the compiler guard the header. How exactly it does this is an implementation-specific detail.  
+There is one known case where #pragma once will typically fail. If a header file is copied so that it exists in multiple places on the file system, if somehow both copies of the header get included, header guards will successfully de-dupe the identical headers, but #pragma once won’t (because the compiler won’t realize they are actually identical content).  
+
+

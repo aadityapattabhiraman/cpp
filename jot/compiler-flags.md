@@ -20,3 +20,9 @@
 
 ### Disable compiler extensions
 You can disable compiler extensions by adding the -pedantic-errors flag to the compile command line.
+
+### Header files in different directory
+Using g++, you can use the -I option to specify an alternate include directory:
+g++ -o main -I./source/includes main.cpp
+
+There is no space after the -I. For a full path (rather than a relative path), remove the . after -I.
