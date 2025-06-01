@@ -112,3 +112,21 @@ Example:
 `g++ main.cpp add.cpp -o main`  
 Add forward declaration in main.cpp  
 
+## Preprocessor
+The preprocessor makes various changes to the code temporaarily in-memory or using temporary files.  
+The preprocessor replaces the `#include` directive with the contents of the included file.
+
+### Macros
+A macro is a rule that defines how input text is converted into replacement output text.  
+
+2 types of macros:
+* function-like(unsafe can be done using a normal function)
+* object-like
+`#define IDENTIFIER`  
+`#define IDENTIFIER substition_text`  
+
+* Object like macro with substitution text
+* Obejct like macro without substitution text
+
+Obejct like macros without substitution text are generally considered acceptable to use.  
+
