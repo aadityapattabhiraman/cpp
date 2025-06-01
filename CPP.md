@@ -72,4 +72,43 @@ List initialization disallows narrow conversions
 * endl
 * endl v/s \n
 
-### Uninitialized variables and Undefined behaviour
+## Functions
+
+A nested function is illegal in CPP
+
+### Status code
+Main function return value 0 when ran normally  
+
+Values:
+* 0
+* EXIT_SUCCESS
+* EXIT_FAILURE
+
+This provides a mechanism for any program lanuching another program to determine whether the launched program ran successfully or not.  
+Failure to return from a value-returning function will cause undefined behaviour.  
+Function main will implicitly return 0 if no return statement is provided.  
+Function can return only a single value.
+
+### Void function
+Cant be used in a expresion that requires a value  
+Returning a value from a void function is a compiiler error.  
+
+### Function Parameters and arguments
+Function parameter is a variable used in the header of the function  
+Argument is a value that is passed from the caller to the function.  
+
+Why functions are used:
+* Organization
+* Reusablity
+* Testing
+* Extensiblity
+* Abstraction
+
+## Files
+
+### Programs with multiple code files
+While compiling the program, one needs to include all the relevant files on the compiler line.  
+Example:
+`g++ main.cpp add.cpp -o main`  
+Add forward declaration in main.cpp  
+
