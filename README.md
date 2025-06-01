@@ -6,3 +6,5 @@ They are mostly going to be markdown files, and a bit of c files as well
 --cpp
     --md
     --cpp files
+
+Restructuring the repo to a single file.  
