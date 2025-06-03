@@ -130,3 +130,24 @@ A macro is a rule that defines how input text is converted into replacement outp
 
 Obejct like macros without substitution text are generally considered acceptable to use.  
 
+### Conditional Compilation
+Allows to specify under what conditions something will or wont compile.
+
+Types:  
+* #ifdef
+Allows preprocessor to check whether a identifier has been defined via #define. If so, the code between #ifdef and matching #endif is compiled. Ignored otherwise.  
+* #ifndef
+Allows to check whether an identifier has not been defined yet.  
+* #endif
+completion for both ifdef and ifndef  
+* if 0
+exclude a block of code from being compiled.  
+* if 1
+always compiles  
+
+Macro substitution does not occur when a macro identifier is used within another preprocessor command. Most forms of `#if` and `#elif` do macro substitution within the preprocessor command.  
+
+### Scope of #define
+Directives are only vaid from the point of definition to the end of the file in which they are defined. Directives defined in one file do not have any impact on the other files, unless they are included in another file.  
+
+### Header Files
