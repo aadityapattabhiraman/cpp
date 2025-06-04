@@ -151,3 +151,35 @@ Macro substitution does not occur when a macro identifier is used within another
 Directives are only vaid from the point of definition to the end of the file in which they are defined. Directives defined in one file do not have any impact on the other files, unless they are included in another file.  
 
 ### Header Files
+Used to propagate a bunch of related forward declarations into a code file.  
+
+A header file consists of 2 parts:
+* header guard
+* content of the header file
+
+If a header file is paired with a code file they should have the same base name
+
+When the preprocessor processes `#include "add."` line, it includes the contents of add.h into the current file at that point. Because our add.h contains a forward declaration for the function add(), that forward declaration will be copied into main.cpp. The end result is a program that is functionally the same as the one where we manually added the forward declaration at the top of main.cpp.  
+
+Do NOT `#include .cpp` files.  
+When angled brackets are used, preprocessor knows that this is a header file we didn't write ourselves. The preprocessor will search for header files only in directories specified by `include directories`. When using double quotes we're telling the preprocessor that this is a header file that we wrote. It will first search the current directory, if it cant find then it will search `include directories`.  
+
+`-I` option can be used to specify alternate include directory  
+`g++ -o main -I./source/includes main.cpp`  
+
+Each file should explicitly #include all the header files it needs to compile. Do not rel on headers included transitively from other headers.  
+
+### Header Guards
+Variables defined more than once can only have one definition, similarly function defined more than once can cause errors.  
+To prevent duplicates of definition in the program especially while using header files header guards are used.
+
+```
+#ifndef UNIQUE
+#definde UNIQUE
+---
+#endif
+```
+Using only the file names for header guards can cause problems, if a file requires both the includes will not used only the first header will be included.  
+Header guards do not prevent a header from being includeed once into different code files  
+`#pragma once` serves the same purpose as header guards. If a header file is copied so that it exists in multiple places on the system, if both copies of heade gets included, header guards will successfully de-dupe the identical headers, where as `#praga once` does not.  
+
