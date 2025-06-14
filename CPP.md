@@ -183,3 +183,47 @@ Using only the file names for header guards can cause problems, if a file requir
 Header guards do not prevent a header from being includeed once into different code files  
 `#pragma once` serves the same purpose as header guards. If a header file is copied so that it exists in multiple places on the system, if both copies of heade gets included, header guards will successfully de-dupe the identical headers, where as `#praga once` does not.  
 
+Example:
+
+`square.h`
+```cpp
+#ifndef SQUARE_H
+#define SQUARE_H
+
+int get_square_sides()
+{
+    return 4;
+}
+#endif
+```
+
+`wave.h`
+```cpp
+#ifndef WAVE_H
+#define WAVE_H
+
+#include "square.h"
+
+#endif
+```
+
+`main.cpp`
+```cpp
+#include "square.h"
+#include "wave.h"
+
+int main()
+{
+    return 0;
+}
+```
+
+Header guards prevent duplicate inclusions because the first time a guard is encountered, the macro isn't defined, so the guarded content is included. Past that point, the guard macro is defined, so any subsequent copies of the guarded content are excluded.  
+
+## Data Types
+
+### Integer overflow
+Assigning 140 to 8 bit signed integer, causes overflow.  
+If during the evaluation of an expression, the result is not mathematically defined or not in the range of representable values for its type, the behaviour is undefined.  
+
+Unsigned integer causes "wraps around" or "modulo wrapping"
