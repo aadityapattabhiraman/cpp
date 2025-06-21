@@ -227,3 +227,13 @@ Assigning 140 to 8 bit signed integer, causes overflow.
 If during the evaluation of an expression, the result is not mathematically defined or not in the range of representable values for its type, the behaviour is undefined.  
 
 Unsigned integer causes "wraps around" or "modulo wrapping"
+
+### Fixed width integers
+same size on every architecture unlike normal integers.  
+the 8-bit fixed-width integer types are often treated like chars instead of integer values (varies based on system). The 16-bit and wider integral types are not subject to this issue.  
+Fixed-width integers actually dont define new types, they are just aliases for existing integral types with the desired size.
+
+### Floats
+Prefer double over float unless size is a premium, s the lack of precision in a float will often lead to inaccuracies.  
+Rounding errors make floating comparison risky  
+
