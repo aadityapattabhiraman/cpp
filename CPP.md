@@ -237,3 +237,78 @@ Fixed-width integers actually dont define new types, they are just aliases for e
 Prefer double over float unless size is a premium, s the lack of precision in a float will often lead to inaccuracies.  
 Rounding errors make floating comparison risky  
 
+### Type Conversion
+When compiler does does type conversions without asking it is called implicit type conversions.  
+`const_cast` and `reinterpret_cast` do not return temp objects, instead reinterpret the type of an existing value or object.  
+In case of explicit type conversions, warnings are not given.  
+`static_cast<int>(ch)`  
+
+## Constants and Strings
+
+### Constants
+* Named Constants
+* Literal Constants
+
+Types of named Constant  
+* Constant variables
+* Object like macros with substitution text
+* enumerate constants
+
+Const Variable
+`const double gravity { 9.8 };`  
+const varibles must be initialized when you define them.  
+Prefer constant variables over object-like macros with substitution text.  
+
+A type qualifier is a keyword that is applied to a type that modifies how that type behaves.  
+Types:  
+* `const`
+* `volatile`
+
+### As-if rule
+Compiler can modify a program however it likes in order to produce mre optimized code.  
+When the compiler fully or partially evaluates an exppression at compile-time, this is called compile-time evaluation.  
+
+* Constant folding is a optimization techinique where the compiler replaces expressions that have literal operands with the result of the expression.  
+* Constant propagation is an optimization technique where the compiler replaces variables known to have constant values with their values. Using constant propagation, the compiler would realise that `x` alwways has constant value `7`, and replace any use of the variable `x` with value `7`.  
+* Dead code elimination is an optimization technique where the compiler removes code that may be executed but has no effect on the program's behavior.  
+Using const variables can help the compiler optimize things more effectively.  
+*optimizations can make programs harder to debug*  
+
+A common cases where a compiler time evaluatable expression:
+* initializer of a constexpr variable
+* A non-type template argument
+* the defined length of a `std::array` or a C-style array.  
+
+### Compile time programming
+C++ language provides ways for us to be explicit about what parts of the code we want to execute at compile-time.  
+
+Foundation to compile-time programming:
+* Constexpr variables
+* Constexpr functions
+* Templates
+* static_assert
+
+### Constant Expression
+Non-empty sequence of literals, constant variables, operators and function calls all of which must be evaluated at compile-time.
+
+Constant expression can contain:
+* Literal
+* Most operators with constant expression operands
+* Const integral variables with a constant expression initializer
+* Constexpr variables
+* Constexpr function calls with constant expression arguments
+* Non-type template parameters
+* enumerators
+* Type traits
+* Constexpr lambda expressions
+
+```cpp
+const int x { 3 + 4 }; // evaluated at compile time
+int y { 3 + 4 }; // maybe evaluated at compile time
+```
+
+The compiler is only required to evaluate constant expressions at compile-time in contexts that require a constant expression. It may or may not do in other cases.  
+
+### constexpr variables
+A `const` variable with an integral type and a constant expression initializer can be used in a constant expression. All other `const` variables cannot be used in constant expressions.  
+
