@@ -312,3 +312,32 @@ The compiler is only required to evaluate constant expressions at compile-time i
 ### constexpr variables
 A `const` variable with an integral type and a constant expression initializer can be used in a constant expression. All other `const` variables cannot be used in constant expressions.  
 
+Use of `const` to create variables that can be used in constant expressions has a few challenges.
+* `const` does not make it immiediately clear whether the variable is usable in constant expression or not.  
+* use of `const` does not provide a way to inform the compiler that we require a variable that is usable in constant expression.  
+* use of `const` to create a compile time constant variable does not extend to non-integral values.  
+
+A `constexpr` variable is always a compile-time constant.  
+Functions normally execute at runtime, the return value of a function is not constexpr even when the return expression is a constant expression.  
+
+### constexpr funcitons
+Function that can be called in a constant expression.  
+
+### String
+`std::string`  
+`std::getline()`  
+`std::getline(std::cin >> std::ws, var);`  
+`std::ws`  
+string copies is expensive.  
+even intializing is expensive.  
+
+### std::string_view
+`std::string` being expensive to initialize or copy, `std::string_view` provides a read only access to an existing string without making a copy.  
+A view is dependent on the object being viewed. If the object being viewed is modified or destroyed while the view is still being used, unexpected or undefined behavior will result.  
+Way too much shit in this and I am not sure whether this would actually be useful to be, especially the number of footguns.  
+
+## Operators
+
+### Conditional Expression
+`condition ? expression1 : expression2;`
+condition is true expression1 is evaluated, else expression2 is evaluated
