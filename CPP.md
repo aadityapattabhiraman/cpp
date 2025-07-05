@@ -3,6 +3,7 @@
 ## Introduction
 
 * Compiling using g++ `g++ -o HelloWorld HelloWorld.cpp`  
+* I use `g++ hello.cpp -std=c++23 -O2 -DNDEBUG -pdeantic-errors -Werror`
 
 ### Configure Compiler
 
